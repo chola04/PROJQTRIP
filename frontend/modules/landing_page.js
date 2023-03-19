@@ -1,9 +1,5 @@
 import config from "../conf/index.js";
 
-const contents = document
-  .getElementById("first")
-  .getElementsByClassName("content text-white")[0]
-  .getElementsByClassName("row")[0];
 async function init() {
   //Fetches list of all cities along with their images and description
 
@@ -12,8 +8,7 @@ async function init() {
   if (cities) {
     var retvalueHTML = "";
     cities.forEach((key) => {
-      debugger;
-      retvalueHTML += addCityToDOM(
+       addCityToDOM(
         key.id,
         key.city,
         key.description,
@@ -31,7 +26,6 @@ async function fetchCities() {
     const response = await fetch("http://43.205.168.252:8082/cities");
     return response.json();
   } catch (err) {
-    alert(err);
   }
 }
 
@@ -40,8 +34,8 @@ function addCityToDOM(id, city, description, image) {
   // TODO: MODULE_CITIES
   // 1. Populate the City details and insert those details into the DOM
   //const divCreate=document.createElement('div');
-  const content = ` <div class="col-12 col-sm-6 col-lg-3 mb-4">
-  <a href="pages/adventures/?city=${id}"></a>
+  const content = `<div class="col-12 col-sm-6 col-lg-3 mb-4">
+  <a href="pages/adventures/"></a>
   <div class="tile">
     <div class="tile-text text-center">
       <h5>${city}</h5>
@@ -50,7 +44,7 @@ function addCityToDOM(id, city, description, image) {
     <img src=${image} class="img-fluid" alt="" />
   </div>
 </div>`;
-  contents.innerHTML += content;
+document.getElementById("data").innerHTML += content;
 }
 
 export { init, fetchCities, addCityToDOM };
