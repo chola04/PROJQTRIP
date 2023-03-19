@@ -27,6 +27,8 @@ async function fetchCities() {
 function addCityToDOM(id, city, description, image) {
   // TODO: MODULE_CITIES
   // 1. Populate the City details and insert those details into the DOM
+  let div=document.getElementsByClassName('row');
+  console.log(div);
 }
 
 export { init, fetchCities, addCityToDOM };
