@@ -26,6 +26,7 @@ async function fetchCities() {
     const response = await fetch("http://43.205.168.252:8082/cities");
     return response.json();
   } catch (err) {
+    return null;
   }
 }
 
