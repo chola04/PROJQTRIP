@@ -6,7 +6,6 @@ async function init() {
   let cities = await fetchCities();
   //Updates the DOM with the cities
   if (cities) {
-    var retvalueHTML = "";
     cities.forEach((key) => {
        addCityToDOM(
         key.id,
@@ -36,7 +35,7 @@ function addCityToDOM(id, city, description, image) {
   // 1. Populate the City details and insert those details into the DOM
   //const divCreate=document.createElement('div');
   const content = `<div class="col-12 col-sm-6 col-lg-3 mb-4">
-  <a href="pages/adventures/"></a>
+  <a id=${id} href="pages/adventures/?city=${id}"></a>
   <div class="tile">
     <div class="tile-text text-center">
       <h5>${city}</h5>
