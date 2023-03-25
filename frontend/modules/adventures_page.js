@@ -5,21 +5,50 @@ import config from "../conf/index.js";
 function getCityFromURL(search) {
   // TODO: MODULE_ADVENTURES
   // 1. Extract the city id from the URL's Query Param and return it
-
+  let City = search.split('=')
+  return City[1];
 }
 
 //Implementation of fetch call with a paramterized input based on city
 async function fetchAdventures(city) {
   // TODO: MODULE_ADVENTURES
   // 1. Fetch adventures using the Backend API and return the data
-
+  try {
+    const url= config.backendEndpoint+"/adventures/?city="+city;
+    const response = await fetch(url);
+    return response.json();
+  } catch (err) {
+    return null;
+  }
 }
 
 //Implementation of DOM manipulation to add adventures for the given city from list of adventures
 function addAdventureToDOM(adventures) {
   // TODO: MODULE_ADVENTURES
   // 1. Populate the Adventure Cards and insert those details into the DOM
-
+  const divElement = document.getElementById("data");
+   
+  for (let adventure of adventures) {
+    const cardElement = document.createElement("div");
+    cardElement.classList.add("col", "col-md-6", "col-lg-4", "mb-4");
+    const card = `<div class="card tile" style="width: 18rem;">
+    <a href="detail/?adventure=${adventure.id}" id=${adventure.id}>
+    <img class="card-img-top activity-card-image" style="height: 400px; width: 300px" src="${adventure.image}" alt="Card image cap">
+    <div class="category-banner">${adventure.category}</div>
+    <div class="card-body">
+      <div class="d-flex justify-content-between">
+        <p>${adventure.name}</p>
+        <p> &#8377; ${adventure.costPerHead}</p>
+      </div>
+      <div class="d-flex justify-content-between">
+        <p>Duration</p>
+        <p>${adventure.duration} Hour</p>
+      </div>
+     </div></a>
+    </div>`;
+    cardElement.innerHTML = card;
+    divElement.appendChild(cardElement);
+  }
 }
 
 //Implementation of filtering by duration which takes in a list of adventures, the lower bound and upper bound of duration and returns a filtered list of adventures.
