@@ -41,7 +41,6 @@
             <p style="font-size: 24px">
                 Here's a list of places that you can explore in city
             </p>
-            
             <div class="mb-5">
                 <!-- Filters section -->
                 <div class="filter-bar d-flex align-items-center">
@@ -149,6 +148,18 @@
             // TODO: MODULE_FILTERS
             // 1. Change the DOM to show the selected duration filter. Use the provided input event
             // 2. Invoke saveFiltersToLocalStorage here
+      
+            document.getElementById("data").textContent = "";
+            document.getElementById("category-list").textContent = "";
+
+            let duration = event.target.value;
+            document.getElementById("duration-select").selectedIndex = 0;
+          
+
+            filters["duration"]=duration;
+        
+            let filteredAdventures = filterFunction(adventures, filters);
+            addAdventureToDOM(filteredAdventures);
 
         }
 
@@ -157,7 +168,12 @@
             // TODO: MODULE_FILTERS
             // 1. Change the DOM to clear the Duration filter. Refer clearCategory() below
             // 2. Invoke saveFiltersToLocalStorage here
+            document.getElementById("data").textContent = "";
+            document.getElementById("category-list").textContent = "";
 
+            filters["duration"] = "";
+            let filteredAdventures = filterFunction(adventures, filters);
+            addAdventureToDOM(filteredAdventures);
         }
 
 
